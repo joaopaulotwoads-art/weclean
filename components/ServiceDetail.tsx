@@ -14,7 +14,7 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, onContac
   }, []);
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    e.currentTarget.src = 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&q=80&w=800';
+    e.currentTarget.src = 'https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&q=60&w=640';
   };
 
   return (
@@ -113,8 +113,11 @@ const ServiceDetail: React.FC<ServiceDetailProps> = ({ service, onBack, onContac
 
               <div className="relative group rounded-3xl overflow-hidden h-64 shadow-2xl bg-blue-600">
                 <img 
-                  src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&q=80&w=800" 
+                  src="https://images.unsplash.com/photo-1563453392212-326f5e854473?auto=format&fit=crop&q=60&w=640" 
                   alt="Quality Assurance" 
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   onError={handleImageError}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />

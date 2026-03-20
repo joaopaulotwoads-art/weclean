@@ -35,7 +35,7 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-house-chimney',
     image:
-      'https://images.unsplash.com/photo-1581578731548-c64695ce6958?auto=format&fit=crop&q=70&w=800',
+      'https://images.unsplash.com/photo-1581578731548-c64695ce6958?auto=format&fit=crop&q=60&w=640',
   },
   {
     id: 'commercial-cleaning',
@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-briefcase',
     image:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=70&w=800',
+      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=60&w=640',
   },
   {
     id: 'move-in-out',
@@ -69,7 +69,7 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-truck-ramp-box',
     image:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=70&w=800',
+      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=60&w=640',
   },
 ];
 

@@ -9,10 +9,11 @@ const AboutUs: React.FC = () => {
           <div className="w-full lg:w-1/2 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-8 border-slate-50">
               <img
-                src="https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=1200"
+                src="https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Professional Cleaning"
                 loading="lazy"
                 decoding="async"
+                fetchPriority="low"
                 className="w-full h-[400px] sm:h-[650px] object-cover"
               />
             </div>
