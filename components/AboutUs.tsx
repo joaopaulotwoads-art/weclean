@@ -11,6 +11,8 @@ const AboutUs: React.FC = () => {
               <img
                 src="https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=1200"
                 alt="Professional Cleaning"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-[400px] sm:h-[650px] object-cover"
               />
             </div>
