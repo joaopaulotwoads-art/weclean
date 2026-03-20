@@ -48,10 +48,11 @@ const ContactForm: React.FC = () => {
           <div className="w-full lg:w-2/3 p-8 sm:p-12 lg:p-16">
             <form
               className="space-y-4 sm:space-y-6"
-              action="https://formsubmit.co/joaopaulotwoads@gmail.com"
+              action="https://formsubmit.co/cleaneshine@hotmail.com"
               method="POST"
             >
               <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_cc" value="joaopaulotwoads@gmail.com" />
               <input
                 type="hidden"
                 name="_subject"
