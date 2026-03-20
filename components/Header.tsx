@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
       </div>
 
       {isMenuOpen && (
-        <div className="lg:hidden absolute top-0 left-0 w-full h-screen bg-slate-900 flex flex-col items-center justify-center space-y-8 z-40 animate-in fade-in duration-300">
+        <div className="lg:hidden absolute top-0 left-0 w-full h-screen bg-slate-900 flex flex-col items-center justify-center space-y-8 z-40 animate-mobile-menu-overlay">
           <button onClick={() => setIsMenuOpen(false)} className="absolute top-6 right-6 text-white text-3xl">
             <i className="fa-solid fa-xmark"></i>
           </button>
