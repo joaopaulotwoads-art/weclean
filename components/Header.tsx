@@ -87,15 +87,16 @@ const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
               {link.label}
             </a>
           ))}
-          <button
+          <a
+            href="#contact"
             onClick={() => {
               setIsMenuOpen(false);
               onLogoClick?.();
             }}
             className="px-10 py-4 bg-blue-600 text-white rounded-full font-bold uppercase tracking-widest"
           >
-            BOOK NOW
-          </button>
+            REQUEST ESTIMATE
+          </a>
         </div>
       )}
     </header>
