@@ -22,8 +22,9 @@
   }
 }
 
+/* Google Fonts stylesheet uses font-display: swap via &display=swap — texto usa Inter / fallbacks nativos até a fonte remota carregar */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 h1,
 h2,

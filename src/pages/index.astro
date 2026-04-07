@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header';
+import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Services from '../components/Services.astro';
 import SocialProof from '../components/SocialProof.astro';
@@ -11,12 +11,10 @@ import ContactForm from '../components/ContactForm.astro';
 import Location from '../components/Location.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
-import WhatsAppButton from '../components/WhatsAppButton.astro';
 ---
 
 <BaseLayout>
-  <Header client:load />
-  <WhatsAppButton />
+  <Header />
   <main>
     <Hero />
     <Services />

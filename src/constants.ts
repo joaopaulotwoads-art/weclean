@@ -1,10 +1,6 @@
 
 import type { Service, Testimonial, FAQItem, NavigationLink } from './types';
 
-export const WHATSAPP_NUMBER = "16786502983";
-export const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hello! I would like to request a cleaning quote with Clean & Shine Services."
-);
 export const GOOGLE_MAPS_REVIEWS_URL =
   "https://www.google.com/maps/place/Clean+%26+Shine+Cleaning+Services+in+Georgia/@33.9426817,-84.5408434,12z/data=!4m8!3m7!1s0xfc07b900df399b5:0x8332a40cfad6bbfa!8m2!3d33.931573!4d-84.54256!9m1!1b1!16s%2Fg%2F11n9cmv6w_?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D";
 
@@ -42,7 +38,7 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-house-chimney',
     image:
-      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=1200',
+      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=1200&fm=webp',
     imageWidth: 1200,
     imageHeight: 800,
   },
@@ -60,7 +56,7 @@ export const SERVICES: Service[] = [
       'Flexible scheduling before or after business hours',
     ],
     icon: 'fa-solid fa-briefcase',
-    image: '/images/commercial-cleaning.png',
+    image: '/images/commercial-cleaning.webp',
     imageWidth: 1024,
     imageHeight: 682,
   },
@@ -78,7 +74,7 @@ export const SERVICES: Service[] = [
       'Bathroom and kitchen deep cleaning focused on sanitization',
     ],
     icon: 'fa-solid fa-truck-ramp-box',
-    image: '/images/move-in-out-cleaning.png',
+    image: '/images/move-in-out-cleaning.webp',
     imageWidth: 1024,
     imageHeight: 682,
   },

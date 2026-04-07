@@ -6,6 +6,8 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  /** Preload hero background WebP (homepage LCP); disable on inner pages. */
+  preloadHeroBg?: boolean;
 }
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wecleanshine.com';
 const {
@@ -13,7 +15,8 @@ const {
   description =
     'Professional cleaning for homes and businesses in Georgia. Regular, commercial, and move-in/out cleaning — reliable, insured, and committed to excellence.',
   canonical = `${siteUrl}/`,
-  ogImage = `${siteUrl}/images/logo-header.png`,
+  ogImage = `${siteUrl}/images/logo-header.webp`,
+  preloadHeroBg = true,
 } = Astro.props;
 ---
 
@@ -42,6 +45,8 @@ const {
 
     <title>{title}</title>
     <link rel="icon" type="image/png" href="/images/logo-header.png" />
+    <link rel="preload" href="/images/logo-header.webp" as="image" type="image/webp" />
+    {preloadHeroBg && <link rel="preload" href="/images/hero-bg.webp" as="image" type="image/webp" />}
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -50,9 +55,14 @@ const {
       rel="stylesheet"
     />
     <link
-      rel="stylesheet"
+      rel="preload"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    </noscript>
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -60,7 +70,7 @@ const {
         '@type': 'LocalBusiness',
         '@id': `${siteUrl}/#localbusiness`,
         name: 'Clean & Shine Cleaning Services in Georgia',
-        image: `${siteUrl}/images/logo-header.png`,
+        image: `${siteUrl}/images/logo-header.webp`,
         url: siteUrl,
         telephone: '+1-678-650-2983',
         email: 'cleaneshine@hotmail.com',

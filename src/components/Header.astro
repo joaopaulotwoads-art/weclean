@@ -1,0 +1,148 @@
+---
+import { NAV_LINKS } from '@/constants';
+---
+
+<header
+  id="site-header"
+  data-scrolled="false"
+  class="fixed top-0 left-0 z-[99] flex h-[var(--header-offset)] min-h-[var(--header-offset)] w-full items-center bg-slate-950/55 backdrop-blur-md transition-colors duration-300 data-[scrolled=true]:bg-slate-950/85 data-[scrolled=true]:shadow-md"
+>
+  <div class="container mx-auto flex w-full min-h-0 items-center justify-between px-4 md:px-8">
+    <a href="/" class="group mr-6 flex shrink-0 items-center gap-3 sm:mr-8 lg:mr-12 xl:mr-16">
+      <picture>
+        <source srcset="/images/logo-header.webp" type="image/webp" />
+        <img
+          src="/images/logo-header.png"
+          alt="Clean & Shine"
+          class="h-14 w-auto max-w-[min(72vw,18rem)] object-contain object-left sm:h-16 md:h-[4.25rem] lg:max-w-[20rem]"
+          width="444"
+          height="315"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </picture>
+    </a>
+
+    <nav class="hidden shrink-0 items-center space-x-8 lg:flex">
+      {
+        NAV_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="text-xs font-bold uppercase tracking-widest text-white transition-colors hover:text-blue-300"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+      <a
+        href="/#contact"
+        class="rounded-full bg-white px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-slate-950 shadow-lg ring-1 ring-white/80 transition-all hover:bg-slate-100"
+      >
+        GET A QUOTE
+      </a>
+    </nav>
+
+    <button
+      id="mobile-menu-btn"
+      class="relative z-[101] text-2xl text-white focus:outline-none lg:hidden"
+      type="button"
+      aria-expanded="false"
+      aria-controls="mobile-menu-panel"
+      aria-label="Open menu"
+    >
+      <i class="fa-solid fa-bars" id="mobile-menu-icon-open" aria-hidden="true"></i>
+      <i class="fa-solid fa-xmark hidden" id="mobile-menu-icon-close" aria-hidden="true"></i>
+    </button>
+  </div>
+</header>
+
+<div
+  id="mobile-menu-panel"
+  class="fixed inset-0 z-[100] hidden min-h-[100dvh] w-full flex-col overflow-y-auto overscroll-contain lg:hidden"
+  style="background-color: #0f172a"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobile navigation"
+  hidden
+>
+  <div class="flex shrink-0 items-start justify-end px-5 pb-4 pt-[max(1.75rem,env(safe-area-inset-top,0px))]">
+    <button
+      type="button"
+      id="mobile-menu-close"
+      class="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800 text-2xl text-white shadow-lg ring-1 ring-white/10 transition-colors hover:bg-slate-700"
+      aria-label="Close menu"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+
+  <nav class="flex flex-1 flex-col items-center gap-8 px-6 pb-16 pt-4 text-center">
+    {
+      NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link text-2xl font-bold text-white transition-colors hover:text-blue-400 sm:text-3xl"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a
+      href="/#contact"
+      class="mobile-nav-link mt-4 rounded-full bg-white px-10 py-4 font-bold uppercase tracking-widest text-slate-950 shadow-lg"
+    >
+      REQUEST ESTIMATE
+    </a>
+  </nav>
+</div>
+
+<script>
+  function syncScroll() {
+    const header = document.getElementById('site-header');
+    if (!header) return;
+    const y = window.scrollY > 50;
+    header.dataset.scrolled = y ? 'true' : 'false';
+  }
+
+  function setMenuOpen(open) {
+    const panel = document.getElementById('mobile-menu-panel');
+    const btn = document.getElementById('mobile-menu-btn');
+    const iconOpen = document.getElementById('mobile-menu-icon-open');
+    const iconClose = document.getElementById('mobile-menu-icon-close');
+    if (!panel || !btn) return;
+
+    panel.hidden = !open;
+    panel.classList.toggle('hidden', !open);
+    panel.classList.toggle('flex', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
+  }
+
+  function init() {
+    syncScroll();
+    window.addEventListener('scroll', syncScroll, { passive: true });
+
+    const btn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    btn?.addEventListener('click', () => {
+      const panel = document.getElementById('mobile-menu-panel');
+      const isClosed = panel?.classList.contains('hidden');
+      setMenuOpen(!!isClosed);
+    });
+    closeBtn?.addEventListener('click', () => setMenuOpen(false));
+
+    document.querySelectorAll('.mobile-nav-link').forEach((el) => {
+      el.addEventListener('click', () => setMenuOpen(false));
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+</script>

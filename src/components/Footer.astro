@@ -6,14 +6,18 @@ import { NAV_LINKS } from '@/constants';
   <div class="container mx-auto px-4">
     <div class="grid md:grid-cols-4 gap-12 mb-16">
       <div class="col-span-1">
-        <img
-          src="/images/logo-header.png"
-          alt="Clean &amp; Shine"
-          class="mb-8 h-14 w-auto max-w-full sm:h-16 md:h-[72px]"
-          decoding="async"
-          width="444"
-          height="315"
-        />
+        <picture>
+          <source srcset="/images/logo-header.webp" type="image/webp" />
+          <img
+            src="/images/logo-header.png"
+            alt="Clean &amp; Shine"
+            class="mb-8 h-14 w-auto max-w-full sm:h-16 md:h-[72px]"
+            decoding="async"
+            width="444"
+            height="315"
+            loading="lazy"
+          />
+        </picture>
         <p class="text-slate-400 text-sm leading-relaxed mb-8">
           Professional cleaning services in Georgia. Dedication, care, and trust for your home and business.
         </p>
