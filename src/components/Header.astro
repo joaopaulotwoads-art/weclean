@@ -1,5 +1,11 @@
 ---
 import { NAV_LINKS } from '@/constants';
+
+/** Homepage: hero image is LCP — keep logo lower priority. Inner pages: logo can be high. */
+interface Props {
+  isHome?: boolean;
+}
+const { isHome = false } = Astro.props;
 ---
 
 <header
@@ -18,7 +24,7 @@ import { NAV_LINKS } from '@/constants';
           width="444"
           height="315"
           loading="eager"
-          fetchpriority="high"
+          fetchpriority={isHome ? 'low' : 'high'}
           decoding="async"
         />
       </picture>

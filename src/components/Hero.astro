@@ -4,18 +4,19 @@
 
 <section
   id="home"
-  class="relative min-h-0 overflow-hidden bg-gradient-to-br from-shine-hero-start via-shine-hero-mid to-shine-hero-end pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:min-h-[70vh] sm:items-center sm:justify-center sm:pb-16 md:min-h-[80vh] sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
+  class="relative min-h-[min(92svh,900px)] overflow-hidden bg-gradient-to-br from-shine-hero-start via-shine-hero-mid to-shine-hero-end pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:min-h-[70vh] sm:items-center sm:justify-center sm:pb-16 md:min-h-[80vh] sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
 >
-  <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
     <img
       src="/images/hero-bg.webp"
       alt=""
       width="1920"
       height="1080"
+      sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      decoding="async"
-      class="h-full min-h-full w-full object-cover opacity-[0.2]"
+      decoding="sync"
+      class="h-full w-full min-h-[min(92svh,900px)] object-cover opacity-[0.35]"
     />
   </div>
   <div
