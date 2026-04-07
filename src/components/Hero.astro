@@ -1,7 +1,7 @@
 ---
 /**
- * LCP: um único <img> WebP (sem <picture>) — candidato explícito para o Chrome/Lighthouse.
- * URL = preload em BaseLayout (/images/commercial-cleaning.webp).
+ * LCP: <img> WebP + texto do h1 com estilo inline (visível antes do /_astro/*.css).
+ * Preload em BaseLayout: /images/commercial-cleaning.webp
  */
 ---
 
@@ -17,7 +17,7 @@
     sizes="100vw"
     loading="eager"
     fetchpriority="high"
-    decoding="sync"
+    decoding="async"
     style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block;"
   />
   <!-- Scrim só na parte inferior: o <img> permanece a área principal visível (LCP). -->
@@ -87,7 +87,8 @@
       Clean &amp; Shine Services • Georgia
     </span>
     <h1
-      class="text-3xl sm:text-5xl md:text-6xl font-semibold mb-4 tracking-tight leading-tight drop-shadow-2xl sm:mb-6"
+      class="font-semibold mb-4 tracking-tight drop-shadow-2xl sm:mb-6"
+      style="color: #fff; font-weight: 600; font-size: clamp(1.75rem, 5.5vw, 3.75rem); line-height: 1.15; margin: 0 0 1rem; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);"
     >
       Professional Cleaning Services You Can Trust!
     </h1>
@@ -113,7 +114,9 @@
     </div>
   </div>
 
-  <div class="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 animate-bounce hidden sm:block">
-    <i class="fa-solid fa-chevron-down text-white/50 text-2xl"></i>
+  <div class="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 hidden sm:block motion-reduce:animate-none animate-bounce">
+    <svg class="h-8 w-8 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+    </svg>
   </div>
 </section>
