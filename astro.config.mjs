@@ -5,9 +5,12 @@ export default defineConfig({
   site: 'https://wecleanshine.com',
   server: { port: 3000 },
   integrations: [tailwind()],
-  /** Inline all page CSS — evita esperar pelo segundo pedido HTTP do _astro/*.css (FCP/LCP no PSI). */
+  /**
+   * `always` inchava o HTML com todo o Tailwind e o Lighthouse 13 falhava auditorias (Erro!) e às vezes NO_LCP.
+   * `auto` mantém CSS externo quando faz sentido — PSI analisa ficheiros normalmente.
+   */
   build: {
-    inlineStylesheets: 'always',
+    inlineStylesheets: 'auto',
   },
   compressHTML: true,
 });

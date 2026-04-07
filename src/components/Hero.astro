@@ -1,44 +1,42 @@
 ---
-/** Hero LCP: mesma URL que preload; WebP + PNG fallback; foto real já usada nos serviços (teste estável no PSI). */
+/**
+ * LCP: um único <img> WebP (sem <picture>) — candidato explícito para o Chrome/Lighthouse.
+ * URL = preload em BaseLayout (/images/commercial-cleaning.webp).
+ */
 ---
 
 <section
   id="home"
   class="relative overflow-hidden pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:items-center sm:justify-center sm:pb-16 sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
 >
-  <div style="position:absolute;left:0;top:0;width:100%;height:100%;z-index:0;">
-    <picture>
-      <source srcset="/images/commercial-cleaning.webp" type="image/webp" />
-      <img
-        src="/images/commercial-cleaning.png"
-        alt="Professional commercial cleaning team"
-        width="1024"
-        height="682"
-        sizes="100vw"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-        style="width:100%;height:100%;object-fit:cover;display:block;"
-      />
-    </picture>
-  </div>
-  <!-- Overlay leve: não tapar a bitmap inteira (candidatos a LCP em laboratório). -->
+  <img
+    src="/images/commercial-cleaning.webp"
+    alt="Professional commercial cleaning team"
+    width="1024"
+    height="682"
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+    style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:0;display:block;"
+  />
+  <!-- Scrim só na parte inferior: o <img> permanece a área principal visível (LCP). -->
   <div
-    class="pointer-events-none absolute inset-0 z-[1]"
-    style="background: linear-gradient(to bottom right, rgba(61, 126, 196, 0.45), rgba(37, 99, 168, 0.5));"
+    class="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[min(58%,420px)]"
+    style="background: linear-gradient(to top, rgba(15, 23, 42, 0.72), rgba(37, 99, 168, 0.28), transparent);"
     aria-hidden="true"
   >
   </div>
 
   <div
-    class="absolute inset-0 z-[5] pointer-events-none opacity-[0.035]"
+    class="pointer-events-none absolute inset-0 z-[1] opacity-[0.035]"
     style="background-image: radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px); background-size: 22px 22px;"
     aria-hidden="true"
   >
   </div>
 
   <div
-    class="pointer-events-none absolute bottom-0 right-0 z-[5] w-[min(46vw,12rem)] translate-x-[26%] translate-y-[6%] opacity-20 sm:w-[min(40vw,13rem)] sm:translate-x-[20%] sm:translate-y-[4%] sm:opacity-25 md:bottom-auto md:top-1/2 md:right-[-0.25rem] md:w-[min(38vw,24rem)] md:max-w-none md:translate-x-0 md:translate-y-0 md:-translate-y-1/2 md:opacity-[0.38] lg:-right-2 xl:right-4 xl:w-[min(34vw,28rem)]"
+    class="pointer-events-none absolute bottom-0 right-0 z-[2] w-[min(46vw,12rem)] translate-x-[26%] translate-y-[6%] opacity-20 sm:w-[min(40vw,13rem)] sm:translate-x-[20%] sm:translate-y-[4%] sm:opacity-25 md:bottom-auto md:top-1/2 md:right-[-0.25rem] md:w-[min(38vw,24rem)] md:max-w-none md:translate-x-0 md:translate-y-0 md:-translate-y-1/2 md:opacity-[0.38] lg:-right-2 xl:right-4 xl:w-[min(34vw,28rem)]"
     aria-hidden="true"
   >
     <svg

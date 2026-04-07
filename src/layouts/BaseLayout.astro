@@ -37,10 +37,18 @@ const {
           />
           <!-- Shell do hero antes do CSS do Tailwind: evita “só azul” no PSI enquanto _astro/*.css bloqueia -->
           <style is:inline>
+            /* Mesmo min-height que global.css — antes do /_astro/*.css o <img> absolute precisa de altura no pai. */
             #home {
               position: relative;
               overflow: hidden;
               background-color: #2563a8;
+              min-height: 70vh;
+              min-height: min(92svh, 900px);
+            }
+            @media (min-width: 768px) {
+              #home {
+                min-height: 80vh;
+              }
             }
           </style>
         </>
