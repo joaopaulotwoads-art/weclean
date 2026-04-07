@@ -1,38 +1,47 @@
 ---
-/* Static hero — full HTML for SEO */
+/**
+ * Hero — imagem de fundo em HTML estático (sem <Image /> nem client:*).
+ * LCP: mesmo ficheiro e URL que o preload em BaseLayout (hero-bg.webp).
+ */
 ---
 
 <section
   id="home"
   class="relative min-h-[min(92svh,900px)] overflow-hidden bg-gradient-to-br from-shine-hero-start via-shine-hero-mid to-shine-hero-end pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:min-h-[70vh] sm:items-center sm:justify-center sm:pb-16 md:min-h-[80vh] sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
 >
+  <!-- Full-opacity image = reliable LCP candidate; dimming via layers above (low opacity on <img> can skew LCP). -->
   <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
     <img
       src="/images/hero-bg.webp"
       alt=""
-      width="1920"
-      height="1080"
+      width={1920}
+      height={1080}
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      decoding="sync"
-      class="h-full w-full min-h-[min(92svh,900px)] object-cover opacity-[0.35]"
+      decoding="async"
+      class="h-full w-full min-h-[min(92svh,900px)] object-cover"
     />
   </div>
   <div
-    class="absolute inset-0 pointer-events-none opacity-[0.42] bg-[radial-gradient(ellipse_at_50%_20%,_rgba(255,255,255,0.22),_transparent_55%),radial-gradient(circle_at_80%_70%,_rgba(56,189,248,0.18),_transparent_50%),radial-gradient(circle_at_bottom,_rgba(15,23,42,0.35),_transparent_55%)]"
+    class="absolute inset-0 z-[1] pointer-events-none bg-slate-950/25"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    class="absolute inset-0 z-[1] pointer-events-none opacity-[0.42] bg-[radial-gradient(ellipse_at_50%_20%,_rgba(255,255,255,0.22),_transparent_55%),radial-gradient(circle_at_80%_70%,_rgba(56,189,248,0.18),_transparent_50%),radial-gradient(circle_at_bottom,_rgba(15,23,42,0.35),_transparent_55%)]"
   >
   </div>
 
   <div
-    class="absolute inset-0 pointer-events-none opacity-[0.035]"
+    class="absolute inset-0 z-[5] pointer-events-none opacity-[0.035]"
     style="background-image: radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px); background-size: 22px 22px;"
     aria-hidden="true"
   >
   </div>
 
   <div
-    class="pointer-events-none absolute bottom-0 right-0 z-0 w-[min(46vw,12rem)] translate-x-[26%] translate-y-[6%] opacity-20 sm:w-[min(40vw,13rem)] sm:translate-x-[20%] sm:translate-y-[4%] sm:opacity-25 md:bottom-auto md:top-1/2 md:right-[-0.25rem] md:w-[min(38vw,24rem)] md:max-w-none md:translate-x-0 md:translate-y-0 md:-translate-y-1/2 md:opacity-[0.38] lg:-right-2 xl:right-4 xl:w-[min(34vw,28rem)]"
+    class="pointer-events-none absolute bottom-0 right-0 z-[5] w-[min(46vw,12rem)] translate-x-[26%] translate-y-[6%] opacity-20 sm:w-[min(40vw,13rem)] sm:translate-x-[20%] sm:translate-y-[4%] sm:opacity-25 md:bottom-auto md:top-1/2 md:right-[-0.25rem] md:w-[min(38vw,24rem)] md:max-w-none md:translate-x-0 md:translate-y-0 md:-translate-y-1/2 md:opacity-[0.38] lg:-right-2 xl:right-4 xl:w-[min(34vw,28rem)]"
     aria-hidden="true"
   >
     <svg

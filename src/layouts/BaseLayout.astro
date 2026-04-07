@@ -44,12 +44,19 @@ const {
     <meta name="twitter:image" content={ogImage} />
 
     <title>{title}</title>
-    <link rel="icon" type="image/png" href="/images/logo-header.png" />
+    <!-- LCP: hero bitmap must load first on homepage (NO_LCP fix — match <img> in Hero.astro) -->
     {preloadHeroBg ? (
-      <link rel="preload" href="/images/hero-bg.webp" as="image" type="image/webp" />
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-bg.webp"
+        type="image/webp"
+        fetchpriority="high"
+      />
     ) : (
-      <link rel="preload" href="/images/logo-header.webp" as="image" type="image/webp" />
+      <link rel="preload" as="image" href="/images/logo-header.webp" type="image/webp" fetchpriority="high" />
     )}
+    <link rel="icon" type="image/png" href="/images/logo-header.png" />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
