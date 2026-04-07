@@ -1,0 +1,109 @@
+---
+const items = [
+  { id: 1, label: 'Kitchen deep cleaning', before: '', after: '' },
+  { id: 2, label: 'Bathroom refresh', before: '', after: '' },
+  { id: 3, label: 'Move-out cleaning', before: '', after: '' },
+  { id: 4, label: 'Living room refresh', before: '', after: '' },
+  { id: 5, label: 'Office common areas', before: '', after: '' },
+];
+---
+
+<section
+  id="gallery"
+  class="relative py-20 sm:py-36 bg-white bg-bubble-pattern border-y border-blue-100 shadow-[inset_0_1px_0_0_rgba(59,130,246,0.1)] ring-1 ring-blue-200/40"
+>
+  <div class="container mx-auto px-4 relative z-[1]">
+    <div class="text-center mb-12 sm:mb-20 max-w-3xl mx-auto">
+      <span class="text-blue-600 font-semibold tracking-[0.28em] text-[10px] uppercase mb-4 block font-display">Before &amp; After</span>
+      <h2 class="text-3xl sm:text-5xl lg:text-6xl font-bold text-slate-950 mb-4 tracking-tight">
+        Real Transformations by Clean &amp; Shine
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-lg font-display font-normal leading-relaxed">
+        Gallery ready for your real before-and-after projects. We will replace each slide with your own client photos.
+      </p>
+    </div>
+
+    <div class="relative">
+      <button
+        type="button"
+        id="gallery-prev"
+        class="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-1 sm:-translate-x-2 lg:-translate-x-4 w-9 h-9 sm:w-11 sm:h-11 items-center justify-center rounded-full bg-white border border-slate-200 shadow-lg text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+        aria-label="Previous gallery slide"
+      >
+        <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
+      </button>
+      <button
+        type="button"
+        id="gallery-next"
+        class="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-1 sm:translate-x-2 lg:translate-x-4 w-9 h-9 sm:w-11 sm:h-11 items-center justify-center rounded-full bg-white border border-slate-200 shadow-lg text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+        aria-label="Next gallery slide"
+      >
+        <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
+      </button>
+
+      <div
+        id="gallery-scroll"
+        class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-2 px-2 sm:px-12 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        tabindex="0"
+        role="region"
+        aria-label="Before and after gallery"
+      >
+        {
+          items.map((item) => (
+            <div class="min-w-[min(100%,520px)] sm:min-w-[560px] snap-center shrink-0 bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-100 flex flex-col">
+              <div class="grid grid-cols-2 h-40 sm:h-52">
+                <div class="relative">
+                  {item.before ? (
+                    <img src={item.before} alt={`${item.label} before`} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                  ) : (
+                    <div class="w-full h-full bg-slate-100 flex items-center justify-center">
+                      <div class="text-center px-3">
+                        <i class="fa-regular fa-image text-slate-400 text-xl mb-2"></i>
+                        <p class="text-[10px] uppercase tracking-wider text-slate-500">Before photo pending</p>
+                      </div>
+                    </div>
+                  )}
+                  <span class="absolute top-2 left-2 px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-slate-900/80 text-white rounded-full">
+                    Before
+                  </span>
+                </div>
+                <div class="relative">
+                  {item.after ? (
+                    <img src={item.after} alt={`${item.label} after`} class="w-full h-full object-cover" loading="lazy" decoding="async" />
+                  ) : (
+                    <div class="w-full h-full bg-blue-50 flex items-center justify-center">
+                      <div class="text-center px-3">
+                        <i class="fa-regular fa-image text-blue-400 text-xl mb-2"></i>
+                        <p class="text-[10px] uppercase tracking-wider text-blue-500">After photo pending</p>
+                      </div>
+                    </div>
+                  )}
+                  <span class="absolute top-2 left-2 px-3 py-1 text-[10px] font-bold uppercase tracking-widest bg-emerald-500 text-white rounded-full">
+                    After
+                  </span>
+                </div>
+              </div>
+              <div class="p-4 sm:p-6">
+                <p class="text-xs sm:text-sm font-semibold text-slate-900 mb-1">{item.label}</p>
+                <p class="text-[11px] sm:text-xs text-slate-500">Waiting for your real client photos for this project.</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  {
+    const el = document.getElementById('gallery-scroll');
+    const prev = document.getElementById('gallery-prev');
+    const next = document.getElementById('gallery-next');
+    if (el && prev && next) {
+      const step = () => el.clientWidth * 0.92;
+      prev.addEventListener('click', () => el.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => el.scrollBy({ left: step(), behavior: 'smooth' }));
+    }
+  }
+</script>

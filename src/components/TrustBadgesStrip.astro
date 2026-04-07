@@ -1,0 +1,49 @@
+---
+/**
+ * Selos Google + Thumbtack (5 estrelas). Substitua THUMBTACK_PROFILE_URL em constants.ts pelo URL real do perfil.
+ */
+import { GOOGLE_MAPS_REVIEWS_URL, THUMBTACK_PROFILE_URL } from '@/constants';
+
+interface Props {
+  variant?: 'default' | 'compact';
+}
+
+const { variant = 'default' } = Astro.props;
+
+const isCompact = variant === 'compact';
+const pad = isCompact ? 'px-4 py-2.5' : 'px-5 py-3';
+const minW = isCompact ? 'min-w-[160px]' : 'min-w-[200px]';
+const iconSize = isCompact ? 'text-xl' : 'text-2xl';
+---
+
+<div
+  class:list={[
+    'flex flex-wrap items-center justify-center gap-3 sm:gap-4',
+    isCompact && 'gap-2 sm:gap-3',
+  ]}
+>
+  <a
+    href={GOOGLE_MAPS_REVIEWS_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class:list={[pad, minW, 'inline-flex items-center gap-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-blue-400 hover:shadow-md transition-all']}
+  >
+    <i class:list={['fa-brands fa-google', iconSize, 'text-[#4285F4]']} aria-hidden="true"></i>
+    <div class="text-left">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 font-display">Google</p>
+      <p class="text-sm font-bold text-slate-900">5 stars</p>
+    </div>
+  </a>
+  <a
+    href={THUMBTACK_PROFILE_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class:list={[pad, minW, 'inline-flex items-center gap-3 rounded-2xl bg-white border border-slate-200 shadow-sm hover:border-[#009fd9] hover:shadow-md transition-all']}
+  >
+    <i class:list={['fa-solid fa-thumbs-up', iconSize, 'text-[#009fd9]']} aria-hidden="true"></i>
+    <div class="text-left">
+      <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500 font-display">Thumbtack</p>
+      <p class="text-sm font-bold text-slate-900">5 estrelas</p>
+    </div>
+  </a>
+</div>

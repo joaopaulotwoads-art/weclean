@@ -1,5 +1,5 @@
 
-import { Service, Testimonial, FAQItem, NavigationLink } from './types';
+import type { Service, Testimonial, FAQItem, NavigationLink } from './types';
 
 export const WHATSAPP_NUMBER = "16786502983";
 export const WHATSAPP_MESSAGE = encodeURIComponent(
@@ -8,15 +8,22 @@ export const WHATSAPP_MESSAGE = encodeURIComponent(
 export const GOOGLE_MAPS_REVIEWS_URL =
   "https://www.google.com/maps/place/Clean+%26+Shine+Cleaning+Services+in+Georgia/@33.9426817,-84.5408434,12z/data=!4m8!3m7!1s0xfc07b900df399b5:0x8332a40cfad6bbfa!8m2!3d33.931573!4d-84.54256!9m1!1b1!16s%2Fg%2F11n9cmv6w_?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D";
 
+/**
+ * URL completo do perfil Thumbtack (5 estrelas). Ex.:
+ * https://www.thumbtack.com/ga/atlanta/house-cleaning/nome-da-empresa/service/ID
+ */
+export const THUMBTACK_PROFILE_URL = 'https://www.thumbtack.com';
+
+/** Hash links use `/#...` so navigation works from any route (e.g. service pages). */
 export const NAV_LINKS: NavigationLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'Services', href: '#services' },
-  { label: 'Checklist', href: '#checklist' },
-  { label: 'Gallery', href: '#gallery' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
-  { label: 'Location', href: '#location' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Home', href: '/#home' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Checklist', href: '/#checklist' },
+  { label: 'Gallery', href: '/#gallery' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
+  { label: 'Location', href: '/#location' },
+  { label: 'FAQ', href: '/#faq' },
 ];
 
 export const SERVICES: Service[] = [
@@ -35,7 +42,7 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-house-chimney',
     image:
-      'https://images.unsplash.com/photo-1581578731548-c64695ce6958?auto=format&fit=crop&q=60&w=640',
+      'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=1200',
   },
   {
     id: 'commercial-cleaning',
@@ -51,8 +58,7 @@ export const SERVICES: Service[] = [
       'Flexible scheduling before or after business hours',
     ],
     icon: 'fa-solid fa-briefcase',
-    image:
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=60&w=640',
+    image: '/images/commercial-cleaning.png',
   },
   {
     id: 'move-in-out',
@@ -68,8 +74,7 @@ export const SERVICES: Service[] = [
       'Bathroom and kitchen deep cleaning focused on sanitization',
     ],
     icon: 'fa-solid fa-truck-ramp-box',
-    image:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=60&w=640',
+    image: '/images/move-in-out-cleaning.png',
   },
 ];
 
@@ -96,6 +101,30 @@ export const TESTIMONIALS: Testimonial[] = [
     role: 'Google Reviews',
     content:
       "Wonderful experience with this cleaning service. The team is super friendly and their attention to detail is outstanding. They consistently go above and beyond.",
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: 'David Linton',
+    role: 'Google Reviews',
+    content:
+      'Very professional and thorough. Communication was clear from the first call through the walkthrough. The house looked amazing when they finished.',
+    rating: 5,
+  },
+  {
+    id: 5,
+    name: 'Brianna Mcgeehan',
+    role: 'Local Guide • Google Reviews',
+    content:
+      'We booked a move-out clean and the team handled everything we asked for. On time, respectful of the space, and the place was ready for inspection.',
+    rating: 5,
+  },
+  {
+    id: 6,
+    name: 'Kelly Petrovich',
+    role: 'Google Reviews',
+    content:
+      'Reliable recurring service for our home. Same high standard every visit and easy to coordinate when our schedule changes.',
     rating: 5,
   },
 ];

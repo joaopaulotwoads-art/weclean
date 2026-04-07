@@ -1,0 +1,100 @@
+---
+import { TESTIMONIALS } from '@/constants';
+import TrustBadgesStrip from './TrustBadgesStrip.astro';
+---
+
+<section id="reviews" class="relative py-24 sm:py-32 bg-slate-50 bg-bubble-pattern">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center mb-10 sm:mb-14">
+      <span class="text-blue-600 font-semibold tracking-[0.28em] text-[10px] uppercase mb-4 block font-display">
+        Client Reviews
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-slate-950 mb-4 tracking-tight">What Our Clients Say</h2>
+      <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto mb-8 font-display font-normal leading-relaxed">
+        Real feedback from recent Google reviews by Clean &amp; Shine clients in Georgia.
+      </p>
+
+      <TrustBadgesStrip />
+    </div>
+
+    <div class="relative">
+      <button
+        type="button"
+        id="reviews-prev"
+        class="flex absolute left-0 top-1/2 -translate-y-1/2 z-10 -translate-x-1 sm:-translate-x-2 lg:-translate-x-4 w-9 h-9 sm:w-11 sm:h-11 items-center justify-center rounded-full bg-white border border-slate-200 shadow-lg text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+        aria-label="Previous reviews"
+      >
+        <i class="fa-solid fa-chevron-left text-sm sm:text-base"></i>
+      </button>
+      <button
+        type="button"
+        id="reviews-next"
+        class="flex absolute right-0 top-1/2 -translate-y-1/2 z-10 translate-x-1 sm:translate-x-2 lg:translate-x-4 w-9 h-9 sm:w-11 sm:h-11 items-center justify-center rounded-full bg-white border border-slate-200 shadow-lg text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors"
+        aria-label="Next reviews"
+      >
+        <i class="fa-solid fa-chevron-right text-sm sm:text-base"></i>
+      </button>
+
+      <div
+        id="reviews-scroll"
+        class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-2 px-2 sm:px-12 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        tabindex="0"
+        role="region"
+        aria-label="Testimonial carousel"
+      >
+        {
+          TESTIMONIALS.map((t) => (
+            <div class="min-w-[min(100%,380px)] sm:min-w-[400px] snap-center shrink-0 bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-slate-100 relative group transition-all duration-500 hover:-translate-y-1">
+              <div class="flex items-center justify-between mb-6">
+                <div class="flex mb-0 text-amber-500">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <i class={`fa-solid fa-star text-xs sm:text-sm`} />
+                  ))}
+                </div>
+                <span class="text-[10px] uppercase tracking-[0.2em] text-slate-400 font-bold">Google Review</span>
+              </div>
+              <p class="text-slate-600 text-sm sm:text-base italic mb-8 leading-relaxed font-light">
+                &ldquo;{t.content}&rdquo;
+              </p>
+              <div>
+                <h4 class="font-bold text-slate-950 text-base sm:text-lg">{t.name}</h4>
+                <p class="text-[10px] text-blue-600 font-bold uppercase tracking-[0.2em] mt-2">{t.role}</p>
+              </div>
+              <i class="fa-solid fa-quote-right absolute top-6 right-8 text-slate-100 text-5xl -z-0 pointer-events-none group-hover:text-blue-50 transition-colors" />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-shield-heart text-blue-500"></i>
+        <span>Licensed &amp; Insured</span>
+      </div>
+      <div class="w-px h-4 bg-slate-200"></div>
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-user-check text-blue-500"></i>
+        <span>Background-Checked Team</span>
+      </div>
+      <div class="w-px h-4 bg-slate-200"></div>
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-badge-check text-blue-500"></i>
+        <span>Satisfaction Focused Service</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  {
+    const el = document.getElementById('reviews-scroll');
+    const prev = document.getElementById('reviews-prev');
+    const next = document.getElementById('reviews-next');
+    if (el && prev && next) {
+      const step = () => Math.max(el.clientWidth * 0.85, 320);
+      prev.addEventListener('click', () => el.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => el.scrollBy({ left: step(), behavior: 'smooth' }));
+    }
+  }
+</script>

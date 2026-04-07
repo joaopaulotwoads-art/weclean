@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wecleanshine.com';
+const {
+  title = 'Clean & Shine Services | Professional Cleaning in Georgia',
+  description =
+    'Professional cleaning for homes and businesses in Georgia. Regular, commercial, and move-in/out cleaning — reliable, insured, and committed to excellence.',
+  canonical = `${siteUrl}/`,
+  ogImage = `${siteUrl}/images/logo-header.png`,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Clean & Shine Services" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <title>{title}</title>
+    <link rel="icon" type="image/png" href="/images/logo-header.png" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'LocalBusiness',
+        '@id': `${siteUrl}/#localbusiness`,
+        name: 'Clean & Shine Cleaning Services in Georgia',
+        image: `${siteUrl}/images/logo-header.png`,
+        url: siteUrl,
+        telephone: '+1-678-650-2983',
+        email: 'cleaneshine@hotmail.com',
+        priceRange: '$$',
+        address: {
+          '@type': 'PostalAddress',
+          addressRegion: 'GA',
+          addressCountry: 'US',
+        },
+        areaServed: {
+          '@type': 'State',
+          name: 'Georgia',
+        },
+        sameAs: [
+          'https://www.google.com/maps/place/Clean+%26+Shine+Cleaning+Services+in+Georgia/@33.9426817,-84.5408434,12z/data=!4m8!3m7!1s0xfc07b900df399b5:0x8332a40cfad6bbfa!8m2!3d33.931573!4d-84.54256!9m1!1b1!16s%2Fg%2F11n9cmv6w_?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D',
+        ],
+      })}
+    />
+  </head>
+  <body class="bg-slate-50 text-slate-900 scroll-smooth">
+    <slot />
+  </body>
+</html>

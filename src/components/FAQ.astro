@@ -1,0 +1,36 @@
+---
+import { FAQS } from '@/constants';
+---
+
+<section id="faq" class="relative py-32 bg-slate-50 bg-bubble-pattern">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="text-center mb-24">
+      <span class="text-blue-600 font-semibold tracking-[0.28em] text-[10px] uppercase mb-4 block font-display">Help Center</span>
+      <h2 class="text-4xl md:text-6xl font-bold text-slate-950 mb-8 tracking-tight">Frequently Asked Questions</h2>
+      <p class="text-slate-600 text-lg font-display font-normal leading-relaxed max-w-2xl mx-auto">
+        These are starter questions and can be replaced with your client-specific FAQ list anytime.
+      </p>
+    </div>
+
+    <div class="space-y-6">
+      {
+        FAQS.map((faq, index) => (
+          <details
+            class="group bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow open:shadow-md"
+            open={index === 0}
+          >
+            <summary class="list-none cursor-pointer w-full px-10 py-8 text-left flex justify-between items-center transition-colors [&::-webkit-details-marker]:hidden">
+              <span class="text-xl font-bold text-slate-900 group-open:text-blue-600 pr-4">{faq.question}</span>
+              <span class="shrink-0 w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 text-slate-400 group-open:bg-blue-600 group-open:text-white group-open:border-blue-600 group-open:rotate-45 transition-all duration-300">
+                <i class="fa-solid fa-plus text-xs"></i>
+              </span>
+            </summary>
+            <div class="px-10 pb-10 text-slate-600 leading-relaxed text-lg border-t border-slate-50 pt-6 font-light">
+              {faq.answer}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
