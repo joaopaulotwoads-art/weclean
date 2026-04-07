@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hero: altura mínima com fallback (svh) — viewport estável para medição LCP */
+#home {
+  min-height: 70vh;
+  min-height: min(92svh, 900px);
+}
+@media (min-width: 768px) {
+  #home {
+    min-height: 80vh;
+  }
+}
+
 /* Alinha padding do Hero com a altura fixa do header */
 :root {
   --header-offset: 9.5rem;

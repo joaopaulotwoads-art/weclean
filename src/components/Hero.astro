@@ -7,10 +7,10 @@
 
 <section
   id="home"
-  class="relative min-h-[min(92svh,900px)] overflow-hidden bg-gradient-to-br from-shine-hero-start via-shine-hero-mid to-shine-hero-end pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:min-h-[70vh] sm:items-center sm:justify-center sm:pb-16 md:min-h-[80vh] sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
+  class="relative overflow-hidden bg-gradient-to-br from-shine-hero-start via-shine-hero-mid to-shine-hero-end pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:items-center sm:justify-center sm:pb-16 sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
 >
-  <!-- Full-opacity image = reliable LCP candidate; dimming via layers above (low opacity on <img> can skew LCP). -->
-  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+  <!-- LCP: same URL as <link rel=preload> in BaseLayout; do not lazy-load; avoid aria-hidden on bitmap (lab edge cases). -->
+  <div class="pointer-events-none absolute inset-0 z-0 overflow-hidden">
     <img
       src="/images/hero-bg.webp"
       alt=""
@@ -19,8 +19,8 @@
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
-      decoding="async"
-      class="h-full w-full min-h-[min(92svh,900px)] object-cover"
+      decoding="sync"
+      class="absolute inset-0 h-full w-full object-cover"
     />
   </div>
   <div
