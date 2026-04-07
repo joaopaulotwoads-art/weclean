@@ -43,6 +43,8 @@ export const SERVICES: Service[] = [
     icon: 'fa-solid fa-house-chimney',
     image:
       'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&q=80&w=1200',
+    imageWidth: 1200,
+    imageHeight: 800,
   },
   {
     id: 'commercial-cleaning',
@@ -59,6 +61,8 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-briefcase',
     image: '/images/commercial-cleaning.png',
+    imageWidth: 1024,
+    imageHeight: 682,
   },
   {
     id: 'move-in-out',
@@ -75,6 +79,8 @@ export const SERVICES: Service[] = [
     ],
     icon: 'fa-solid fa-truck-ramp-box',
     image: '/images/move-in-out-cleaning.png',
+    imageWidth: 1024,
+    imageHeight: 682,
   },
 ];
 

@@ -39,6 +39,7 @@ const Header: React.FC = () => {
               alt="Clean & Shine"
               className="h-14 w-auto max-w-[min(72vw,18rem)] object-contain object-left sm:h-16 md:h-[4.25rem] lg:max-w-[20rem]"
               decoding="async"
+              fetchPriority="high"
               width={444}
               height={315}
             />

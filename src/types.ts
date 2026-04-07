@@ -7,6 +7,9 @@ export interface Service {
   features: string[];
   icon: string;
   image: string;
+  /** Intrinsic pixel size — used for width/height to reduce CLS (PageSpeed). */
+  imageWidth: number;
+  imageHeight: number;
 }
 
 export interface Testimonial {
