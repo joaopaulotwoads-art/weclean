@@ -27,13 +27,23 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {
       preloadHeroBg ? (
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero-bg.webp"
-          type="image/webp"
-          fetchpriority="high"
-        />
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href="/images/hero-bg.webp"
+            type="image/webp"
+            fetchpriority="high"
+          />
+          <!-- Shell do hero antes do CSS do Tailwind: evita “só azul” no PSI enquanto _astro/*.css bloqueia -->
+          <style is:inline>
+            #home {
+              position: relative;
+              overflow: hidden;
+              background-color: #2563a8;
+            }
+          </style>
+        </>
       ) : (
         <link rel="preload" as="image" href="/images/logo-header.webp" type="image/webp" fetchpriority="high" />
       )

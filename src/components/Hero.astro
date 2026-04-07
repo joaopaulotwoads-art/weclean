@@ -1,13 +1,30 @@
 ---
-/**
- * Hero — foto em CSS (#home background-image). Mesmo URL que preload no layout (Lighthouse LCP).
- */
+/** Mesmo path que <link rel="preload"> — relativo ao domínio (evita mismatch clean-shine.com vs wecleanshine.com). */
+const heroImg = '/images/hero-bg.webp';
 ---
 
 <section
   id="home"
   class="relative overflow-hidden pt-[calc(var(--header-offset)+1.25rem)] scroll-mt-[calc(var(--header-offset)+1.25rem)] pb-10 sm:flex sm:items-center sm:justify-center sm:pb-16 sm:pt-[calc(var(--header-offset)+0.5rem)] sm:scroll-mt-[calc(var(--header-offset)+0.5rem)]"
 >
+  <img
+    src={heroImg}
+    alt=""
+    width="1920"
+    height="1080"
+    sizes="100vw"
+    loading="eager"
+    fetchpriority="high"
+    decoding="async"
+    style="position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover;z-index:0;"
+  />
+  <div
+    class="pointer-events-none absolute inset-0 z-[1]"
+    style="background: linear-gradient(to bottom right, rgba(61, 126, 196, 0.78), rgba(82, 174, 232, 0.68), rgba(37, 99, 168, 0.82));"
+    aria-hidden="true"
+  >
+  </div>
+
   <div
     class="absolute inset-0 z-[5] pointer-events-none opacity-[0.035]"
     style="background-image: radial-gradient(circle, rgba(255,255,255,0.65) 1px, transparent 1px); background-size: 22px 22px;"

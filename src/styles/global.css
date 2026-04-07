@@ -2,29 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
- * Hero (#home): LCP via CSS background-image url() no próprio section.
- * Lighthouse mede LCP para backgrounds carregados com url() — mais estável que <img> + várias camadas full-screen.
- * Ordem: camadas de cima → fundo = foto hero-bg.webp (mesmo URL do <link rel=preload>).
- */
+/* Hero: altura (a foto é <img> no HTML com estilo inline — não depende do bundle CSS carregar). */
 #home {
   min-height: 70vh;
   min-height: min(92svh, 900px);
-  background-color: #2563a8;
-  background-image:
-    linear-gradient(to bottom right, rgba(15, 23, 42, 0.28), rgba(37, 99, 168, 0.35)),
-    radial-gradient(ellipse 85% 55% at 50% 18%, rgba(255, 255, 255, 0.18), transparent 52%),
-    radial-gradient(circle at 82% 68%, rgba(56, 189, 248, 0.14), transparent 48%),
-    linear-gradient(
-      to bottom right,
-      rgba(61, 126, 196, 0.72),
-      rgba(82, 174, 232, 0.65),
-      rgba(37, 99, 168, 0.78)
-    ),
-    url('/images/hero-bg.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 @media (min-width: 768px) {
   #home {
