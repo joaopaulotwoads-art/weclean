@@ -76,34 +76,29 @@ const {
 
     <title>{title}</title>
     <link rel="icon" type="image/png" href="/images/logo-header.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Non-blocking fonts (reduces FCP); body uses system fallbacks until loaded -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-    <!-- Sem preload: não competir com a imagem LCP; mesmo truque media=print que as fontes -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      media="print"
-      onload="this.media='all'"
-    />
+    <!-- Fontes: stack nativo (global.css) — zero pedidos a fonts.googleapis no caminho crítico do PSI. -->
+    <!-- Font Awesome: só após idle — ícones abaixo da dobra não bloqueiam FCP/LCP -->
     <noscript>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     </noscript>
   </head>
   <body class="bg-slate-50 text-slate-900 scroll-smooth">
     <slot />
+    <script is:inline>
+      (function () {
+        function loadFa() {
+          var l = document.createElement('link');
+          l.rel = 'stylesheet';
+          l.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+          document.head.appendChild(l);
+        }
+        if (typeof requestIdleCallback === 'function') {
+          requestIdleCallback(loadFa, { timeout: 2000 });
+        } else {
+          window.addEventListener('load', loadFa, { once: true });
+        }
+      })();
+    </script>
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
