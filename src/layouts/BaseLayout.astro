@@ -6,8 +6,6 @@ interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
-  /** Preload hero background WebP (homepage LCP); disable on inner pages. */
-  preloadHeroBg?: boolean;
 }
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') ?? 'https://wecleanshine.com';
 const {
@@ -16,7 +14,6 @@ const {
     'Professional cleaning for homes and businesses in Georgia. Regular, commercial, and move-in/out cleaning — reliable, insured, and committed to excellence.',
   canonical = `${siteUrl}/`,
   ogImage = `${siteUrl}/images/logo-header.webp`,
-  preloadHeroBg = true,
 } = Astro.props;
 ---
 
@@ -25,37 +22,20 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {
-      preloadHeroBg ? (
-        <>
-          <link
-            rel="preload"
-            as="image"
-            href="/images/commercial-cleaning.webp"
-            type="image/webp"
-            fetchpriority="high"
-          />
-          <!-- Shell do hero antes do CSS do Tailwind: evita “só azul” no PSI enquanto _astro/*.css bloqueia -->
-          <style is:inline>
-            /* Mesmo min-height que global.css — antes do /_astro/*.css o <img> absolute precisa de altura no pai. */
-            #home {
-              position: relative;
-              overflow: hidden;
-              background-color: #2563a8;
-              min-height: 70vh;
-              min-height: min(92svh, 900px);
-            }
-            @media (min-width: 768px) {
-              #home {
-                min-height: 80vh;
-              }
-            }
-          </style>
-        </>
-      ) : (
-        <link rel="preload" as="image" href="/images/logo-header.webp" type="image/webp" fetchpriority="high" />
-      )
-    }
+    <!-- Sem preload de imagem para evitar conflito de identificação de LCP no PSI -->
+    <style is:inline>
+      #home {
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+        min-height: min(92svh, 900px);
+      }
+      @media (min-width: 768px) {
+        #home {
+          min-height: 80vh;
+        }
+      }
+    </style>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f172a" />
     <meta name="robots" content="index, follow" />
